@@ -1,4 +1,4 @@
-# 🦸 GEMINI CLI SUPERPOWERS INSTALLER for Windows
+# GEMINI CLI SUPERPOWERS INSTALLER for Windows
 # ==============================================================================
 # "Radically Simple" Adapter for Google Gemini CLI
 #
@@ -22,7 +22,7 @@ if ($INSTALL_GLOBAL) {
     $GEMINI_MD_INSTALL_PATH = Join-Path $GEMINI_ROOT "GEMINI.md"
     $GEMINI_SKILLS_BASE_DIR = Join-Path $GEMINI_ROOT ".superpowers\skills"
     $COMMANDS_DIR = Join-Path $GEMINI_ROOT "commands"
-    Write-Host "🌍 Installing superpowers globally to $HOME..." -ForegroundColor Cyan
+    Write-Host "Installing superpowers globally to $HOME..." -ForegroundColor Cyan
 } else {
     # Workspace-local installation
     $GEMINI_LOCAL = Join-Path $WORKSPACE_ROOT ".gemini"
@@ -32,7 +32,7 @@ if ($INSTALL_GLOBAL) {
     $GEMINI_MD_INSTALL_PATH = Join-Path $GEMINI_LOCAL "GEMINI.md"
     $GEMINI_SKILLS_BASE_DIR = Join-Path $GEMINI_LOCAL ".superpowers\skills"
     $COMMANDS_DIR = Join-Path $GEMINI_LOCAL "commands"
-    Write-Host "📁 Installing superpowers workspace-locally to $WORKSPACE_ROOT..." -ForegroundColor Cyan
+    Write-Host "Installing superpowers workspace-locally to $WORKSPACE_ROOT..." -ForegroundColor Cyan
 }
 
 $CONTEXT_FILE = $GEMINI_MD_INSTALL_PATH
@@ -55,16 +55,16 @@ $SKILLS = @(
     "using-superpowers:superpowers:Learn about available Superpowers"
 )
 
-Write-Host "`n🦸 Gemini CLI Superpowers Installer" -ForegroundColor Yellow
+Write-Host "`nGemini CLI Superpowers Installer" -ForegroundColor Yellow
 Write-Host "===================================" -ForegroundColor Yellow
 
 # 1. Setup Cache
 Write-Host ""
 if (Test-Path $CACHE_DIR) {
-    Write-Host "🔄 Updating Superpowers cache..." -ForegroundColor Green
+    Write-Host "Updating Superpowers cache..." -ForegroundColor Green
     git -C $CACHE_DIR pull -q
 } else {
-    Write-Host "⬇️  Cloning Superpowers to $CACHE_DIR..." -ForegroundColor Green
+    Write-Host "Cloning Superpowers to $CACHE_DIR..." -ForegroundColor Green
     $cacheParent = Split-Path $CACHE_DIR
     if (-not (Test-Path $cacheParent)) {
         New-Item -ItemType Directory -Path $cacheParent -Force | Out-Null
@@ -73,7 +73,7 @@ if (Test-Path $CACHE_DIR) {
 }
 
 # 1b. Setup Skills in Gemini config directory
-Write-Host "📦 Installing skills to $GEMINI_SKILLS_BASE_DIR..." -ForegroundColor Green
+Write-Host "Installing skills to $GEMINI_SKILLS_BASE_DIR..." -ForegroundColor Green
 if (-not (Test-Path $GEMINI_SKILLS_BASE_DIR)) {
     New-Item -ItemType Directory -Path $GEMINI_SKILLS_BASE_DIR -Force | Out-Null
 }
@@ -88,7 +88,7 @@ Get-ChildItem -Path $cacheSkillsPath -Directory | ForEach-Object {
 }
 
 # 2. Generate Slash Commands
-Write-Host "🛠️  Generating Slash Commands..." -ForegroundColor Green
+Write-Host "Generating Slash Commands..." -ForegroundColor Green
 if (-not (Test-Path $COMMANDS_DIR)) {
     New-Item -ItemType Directory -Path $COMMANDS_DIR -Force | Out-Null
 }
@@ -121,23 +121,19 @@ Task: {{args}}
 """
 "@
         Set-Content -Path $toml_file -Value $content -Encoding utf8
-        Write-Host "   ✓ /$cmd_name -> $skill_dir"
+        Write-Host "   - /$cmd_name -> $skill_dir"
         $count++
     } else {
-        Write-Host "   ⚠️  Missing skill: $skill_dir" -ForegroundColor Yellow
+        Write-Host "   ! Missing skill: $skill_dir" -ForegroundColor Yellow
     }
 }
 
 # 3. Inject Global Context
-Write-Host "`n📝 Injecting protocol into $CONTEXT_FILE..." -ForegroundColor Green
+Write-Host "`nInjecting protocol into $CONTEXT_FILE..." -ForegroundColor Green
 $MARKER = "<!-- SUPERPOWERS-PROTOCOL -->"
 
 # Detect skill-creator path
 $SKILL_CREATOR_PATH = "C:\Users\Ujwal\AppData\Roaming\npm\node_modules\@google\gemini-cli\bundle\builtin\skill-creator\SKILL.md"
-if (-not (Test-Path $SKILL_CREATOR_PATH)) {
-    # Fallback/Guess if path is different (though system prompt confirms this one)
-    $SKILL_CREATOR_PATH = "SKILL_CREATOR_PATH_NOT_FOUND"
-}
 
 $PROTOCOL_CONTENT = @"
 $MARKER
@@ -296,17 +292,17 @@ if (Test-Path $CONTEXT_FILE) {
         $pattern = "(?s)" + [regex]::Escape($MARKER) + ".*?" + [regex]::Escape($MARKER)
         $newContent = [regex]::Replace($existingContent, $pattern, $PROTOCOL_CONTENT.Replace('$', '$$'))
         Set-Content -Path $CONTEXT_FILE -Value $newContent -Encoding utf8
-        Write-Host "   ✓ Updated existing protocol definition at $CONTEXT_FILE"
+        Write-Host "Updated existing protocol definition at $CONTEXT_FILE"
     } else {
         Add-Content -Path $CONTEXT_FILE -Value "`n$PROTOCOL_CONTENT" -Encoding utf8
-        Write-Host "   ✓ Appended protocol to context file at $CONTEXT_FILE"
+        Write-Host "Appended protocol to context file at $CONTEXT_FILE"
     }
 } else {
     Set-Content -Path $CONTEXT_FILE -Value $PROTOCOL_CONTENT -Encoding utf8
-    Write-Host "   ✓ Created protocol context file at $CONTEXT_FILE"
+    Write-Host "Created protocol context file at $CONTEXT_FILE"
 }
 
-Write-Host "`n✅ Installation Complete ($count commands installed)" -ForegroundColor Cyan
+Write-Host "`nInstallation Complete ($($count) commands installed)" -ForegroundColor Cyan
 Write-Host "===================================" -ForegroundColor Cyan
 Write-Host "Restart Gemini CLI, then try:"
 Write-Host "  /plan Build a simple hello world script"
