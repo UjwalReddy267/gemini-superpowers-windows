@@ -1,6 +1,6 @@
 # Gemini/VSC Parity Cleanup
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **For Gemini:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Further align `gemini-superpowers` repository with `vsc-superpowers` by removing unnecessary files and standardizing the license file name.
 

@@ -16,8 +16,8 @@ REPO_URL="https://github.com/obra/superpowers"
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/superpowers"
 GEMINI_ROOT="$HOME/.gemini" # Base for global Gemini CLI config
 
-# Default to workspace-local installation
-INSTALL_GLOBAL=false
+# Default to global installation
+INSTALL_GLOBAL=true
 WORKSPACE_ROOT="$(pwd)" # Current working directory is the workspace root
 
 if [ "$INSTALL_GLOBAL" = true ]; then
@@ -178,7 +178,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 \`\`\`markdown
 # [Feature Name] Implementation Plan
 
-&gt; **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+&gt; **For Gemini:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** [One sentence describing what this builds]
 

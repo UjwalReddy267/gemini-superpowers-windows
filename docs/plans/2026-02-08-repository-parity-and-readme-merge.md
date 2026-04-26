@@ -1,6 +1,6 @@
 # Repository Parity and README Merge
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **For Gemini:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Bring `gemini-superpowers` to full parity with the core `superpowers` repository (from `.cache/superpowers`) and consolidate `docs/README.md` content into the root `README.md` for `gemini-superpowers`. For `vsc-superpowers`, ensure its root `README.md` is self-contained.
 
@@ -107,7 +107,7 @@ git commit -m "feat: add .gitattributes and RELEASE-NOTES.md from core superpowe
 ### Task 4: Bring `gemini-superpowers` to parity with `.cache/superpowers` - Plugin/Tool directories
 
 **Files:**
-- Create: `/Users/earchibald/work/gemini-superpowers/.claude-plugin/...`
+- Create: `/Users/earchibald/work/gemini-superpowers/.Gemini-plugin/...`
 - Create: `/Users/earchibald/work/gemini-superpowers/.codex/...`
 - Modify: `/Users/earchibald/work/gemini-superpowers/.github/FUNDING.yml` (create if not exists, add content)
 - Create: `/Users/earchibald/work/gemini-superpowers/.opencode/...`
@@ -116,10 +116,10 @@ git commit -m "feat: add .gitattributes and RELEASE-NOTES.md from core superpowe
 - Create: `/Users/earchibald/work/gemini-superpowers/hooks/...`
 - Create: `/Users/earchibald/work/gemini-superpowers/lib/...`
 
-**Step 1: Copy `.claude-plugin/` directory**
+**Step 1: Copy `.Gemini-plugin/` directory**
 
-Command explanation: Copies the `.claude-plugin` directory and its contents recursively from the cache to `gemini-superpowers`.
-Run: `run_shell_command(command='rsync -a /Users/earchibald/.cache/superpowers/.claude-plugin/ /Users/earchibald/work/gemini-superpowers/.claude-plugin/', description='Copy .claude-plugin directory recursively.')`
+Command explanation: Copies the `.Gemini-plugin` directory and its contents recursively from the cache to `gemini-superpowers`.
+Run: `run_shell_command(command='rsync -a /Users/earchibald/.cache/superpowers/.Gemini-plugin/ /Users/earchibald/work/gemini-superpowers/.Gemini-plugin/', description='Copy .Gemini-plugin directory recursively.')`
 
 **Step 2: Copy `.codex/` directory**
 
@@ -159,7 +159,7 @@ Run: `run_shell_command(command='rsync -a /Users/earchibald/.cache/superpowers/l
 **Step 9: Commit**
 
 ```bash
-git add /Users/earchibald/work/gemini-superpowers/.claude-plugin /Users/earchibald/work/gemini-superpowers/.codex /Users/earchibald/work/gemini-superpowers/.github/FUNDING.yml /Users/earchibald/work/gemini-superpowers/.opencode /Users/earchibald/work/gemini-superpowers/agents /Users/earchibald/work/gemini-superpowers/commands /Users/earchibald/work/gemini-superpowers/hooks /Users/earchibald/work/gemini-superpowers/lib
+git add /Users/earchibald/work/gemini-superpowers/.Gemini-plugin /Users/earchibald/work/gemini-superpowers/.codex /Users/earchibald/work/gemini-superpowers/.github/FUNDING.yml /Users/earchibald/work/gemini-superpowers/.opencode /Users/earchibald/work/gemini-superpowers/agents /Users/earchibald/work/gemini-superpowers/commands /Users/earchibald/work/gemini-superpowers/hooks /Users/earchibald/work/gemini-superpowers/lib
 git commit -m "feat: add plugin/tool related directories and FUNDING.yml from core superpowers"
 ```
 

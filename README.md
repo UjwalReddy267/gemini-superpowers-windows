@@ -49,14 +49,26 @@ cd gemini-superpowers
 
 ### How Installation Works
 
-The `install-superpowers.sh` script sets up your Gemini CLI environment by:
+The `install-superpowers.ps1` (Windows) or `install-superpowers.sh` (Linux/macOS) script sets up your Gemini CLI environment by:
 
 1.  **Global Cache**: Clones the core Superpowers framework to a shared cache directory (`~/.cache/superpowers`), centralizing skill definitions for efficiency across all Gemini CLI instances.
-2.  **Native Commands**: Generates `.toml` slash commands directly within your `~/.gemini/commands/` directory. These commands provide seamless, native access to the cached Superpowers skills.
-3.  **Autonomous Protocol**: Injects the "Loop of Autonomy" protocol into your `~/.gemini/GEMINI.md` file. This crucial step guides Gemini CLI's behavior to strictly follow the Superpowers workflow and best practices.
+2.  **Native Commands**: Generates `.toml` slash commands directly within your global `~/.gemini/commands/` directory (default). These commands provide seamless, native access to the cached Superpowers skills.
+3.  **Autonomous Protocol**: Injects the "Loop of Autonomy" protocol into your global `~/.gemini/GEMINI.md` file. This crucial step guides Gemini CLI's behavior to strictly follow the Superpowers workflow and best practices.
 
 **Result:** Your Gemini CLI is transformed into an autonomous coding agent, leveraging Superpowers' structured workflows through deep native integration.
 
+### Installation Options
+
+By default, the installer performs a **global installation**. This makes the `/plan`, `/tdd`, and other slash commands available in every project.
+
+#### Workspace-Local Installation (Alternative)
+
+If you prefer to install Superpowers only for a specific project:
+1.  Edit the installer script (`.ps1` or `.sh`).
+2.  Set `INSTALL_GLOBAL=false`.
+3.  Run the installer from your project root.
+
+This will create a `.gemini` directory within your project and store the commands and protocol there.
 ### Backup & Recovery
 
 If a `.gemini` directory already exists, the installer will attempt to update existing commands and the protocol. If you need to revert, you can manually remove generated command files from `~/.gemini/commands/` and edit `~/.gemini/GEMINI.md`.

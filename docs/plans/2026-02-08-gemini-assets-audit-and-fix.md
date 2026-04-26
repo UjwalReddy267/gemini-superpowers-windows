@@ -1,6 +1,6 @@
 # Gemini Assets Audit and Fix
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **For Gemini:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Remove VS Code-specific artifacts and update documentation to be accurate for `gemini-superpowers`, ensuring full Gemini-focused correctness across the repository.
 
